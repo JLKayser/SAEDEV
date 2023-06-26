@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Virement</title>
+    <style>
+        body {
+            font-family: system-ui;
+        }
+
+        .navbar {
+            background-color: #f8f8f8;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 40px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a class="active" href="/dashboard">Accueil</a>
+        <a href="/banque/depot">Dépôt</a>
+        <a href="/banque/prelevement">Prélèvement</a>
+        <a href="/banque/virement">Virement</a>
+        <a href="/banque/creation_compte">Création de compte</a>
+        <a href="/banque/logout">Logout</a>
+    </div>
+<div class="container">
+    <h2>Virement</h2>
+
+    <form action="api/virement" method="post">
+        {% csrf_token %}
+        <label for="compte_source">Compte source:</label>
+        <select id="compte_source" name="compte_source">
+            {% for i in compte_source %}
+            <option value="{{i.id}}">{{i.nom}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="compte_destination">Compte destination:</label>
+        <select id="compte_destination" name="compte_destination">
+            {% for i in compte_destination %}
+            <option value="{{i.id}}">{{i.nom}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="montant">Montant:</label>
+        <input type="number" id="montant" name="montant" step="0.01">
+
+        <input type="submit" value="Effectuer le virement">
+    </form>
+</div>
+
+</body>
+</html>

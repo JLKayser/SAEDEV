@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau de bord</title>
+    <style>
+        body {
+            font-family: system-ui;
+        }
+
+        .navbar {
+            background-color: #f8f8f8;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 40px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Styles pour les cartes bancaires */
+    .carte-bancaire {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .carte-bancaire-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .carte-bancaire-titre {
+        font-weight: bold;
+    }
+
+    .carte-bancaire-supprimer {
+        color: red;
+        cursor: pointer;
+    }
+
+    .approve-button, .reject-button {
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.approve-button {
+    background-color: green;
+    color: white;
+}
+
+.reject-button {
+    background-color: red;
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a class="active" href="#top">Accueil</a>
+        <a href="/banque/logout">Logout</a>
+    </div>
+    
+    <div class="container">
+        <h2>Tableau de bord du personnel</h2>
+    
+        <div class="transaction">
+            <h3>Dépôt en attente</h3>
+            <p>Montant du dépôt : 12,000 €</p>
+            <form method="post">
+                {% csrf_token %}
+                <button class="approve-button">&#10004;</button>
+                <button class="reject-button">&#10008;</button>
+            </form>
+        </div>
+    </div>      
+</body>
+</html>

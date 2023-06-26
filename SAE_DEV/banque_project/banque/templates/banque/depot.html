@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Depot</title>
+    <style>
+        body {
+            font-family: system-ui;
+        }
+
+        .navbar {
+            background-color: #f8f8f8;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 40px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Ajoutez ces règles CSS à votre code existant */
+
+/* Animation de survol sur les liens de la navbar */
+.navbar a:hover {
+    background-color: #ddd;
+    transition: background-color 0.3s ease;
+}
+
+/* Animation de survol sur les boutons */
+input[type="submit"]:hover {
+    background-color: #45a049;
+    transition: background-color 0.3s ease;
+}
+
+/* Animation de fade-in sur le contenu de la page */
+.container {
+    opacity: 0;
+    animation: fade-in 1s ease forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a class="active" href="/dashboard">Accueil</a>
+        <a href="/banque/depot">Dépôt</a>
+        <a href="/banque/prelevement">Prélèvement</a>
+        <a href="/banque/virement">Virement</a>
+        <a href="/banque/creation_compte">Création de compte</a>
+        <a href="/banque/logout">Logout</a>
+    </div>
+<div class="container">
+    <h2>Depot</h2>
+    {% if depot_success %}
+        <p>Le dépôt a été effectué avec succès.</p>
+    {% endif %}
+    <form action='api/depot' method="post">
+        {% csrf_token %}
+        <label for="compte_source">Compte source:</label>
+        <select id="compte_source" name="compte_source">
+            {% for i in compte_source %}
+            <option value="{{i.id}}">{{i.nom}}</option>
+            {% endfor %}
+        </select>
+        <input type="number" name="montant" placeholder="Montant du dépôt" required>
+        <input type="submit" value="Déposer">
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Création de compte</title>
+    <style>
+        body {
+            font-family: system-ui;
+        }
+
+        .navbar {
+            background-color: #f8f8f8;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 40px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a class="active" href="/dashboard">Accueil</a>
+        <a href="/banque/depot">Dépôt</a>
+        <a href="/banque/prelevement">Prélèvement</a>
+        <a href="/banque/virement">Virement</a>
+        <a href="/banque/creation_compte">Création de compte</a>
+        <a href="/banque/logout">Logout</a>
+    </div>
+    <div class="container">
+        <h2>Création de compte</h2>
+        
+        <form method="POST" action="/creation_compte">
+        {% csrf_token %}
+        <label for="nom">Nom:</label>
+        <input type="text" name="nom" id="nom" required>
+
+        <label for="solde">Solde:</label>
+        <input type="text" name="solde" id="solde" required>
+
+      <input type="submit" value="Create">
+    </form></div>
+</body>
+</html>
